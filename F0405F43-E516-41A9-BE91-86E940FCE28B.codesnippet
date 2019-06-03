@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>layout</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>&lt;#UIView#&gt;.translatesAutoresizingMaskIntoConstraints = false
+        &lt;#UIView#&gt;.topAnchor.constraint(equalTo: &lt;#UIView#&gt;.topAnchor, constant: &lt;#Int#&gt;).isActive = true
+        &lt;#UIView#&gt;.bottomAnchor.constraint(equalTo: &lt;#UIView#&gt;.bottomAnchor, constant: &lt;#Int#&gt;).isActive = true
+        &lt;#UIView#&gt;.leadingAnchor.constraint(equalTo: &lt;#UIView#&gt;.leadingAnchor, constant: &lt;#Int#&gt;).isActive = true
+        &lt;#UIView#&gt;.trailingAnchor.constraint(equalTo: &lt;#UIView#&gt;.trailingAnchor, constant: &lt;#Int#&gt;).isActive = true
+
+        // Width &amp; Height
+        &lt;#UIView#&gt;.heightAnchor.constraint(equalTo: &lt;#UIView#&gt;.heightAnchor, constant: &lt;#Int#&gt;).isActive = true
+        &lt;#UIView#&gt;.widthAnchor.constraint(equalTo: &lt;#UIView#&gt;.widthAnchor, constant: &lt;#Int#&gt;).isActive = true</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F0405F43-E516-41A9-BE91-86E940FCE28B</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Coding-AutoLayout</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

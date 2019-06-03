@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>rssParser</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>class RSSParser: NSObject, XMLParserDelegate {
+
+    private var rssItems: [RSSItem] = []
+    private var currentElement = ""
+    //TODO: Remove whitespace around strings in swift
+
+    private var currentTitle: String = "" {
+        didSet {
+            currentTitle = currentTitle.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
+    
+    private var currentDescription: String = "" {
+        didSet {
+            currentDescription = currentDescription.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
+    
+    private var currentPubDate: String = "" {
+        didSet {
+            currentPubDate = currentPubDate.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
+    
+    var currentImage: String = ""
+    var currentImage1: [AnyObject] = []
+    
+    private var parserCompletionHandler: (([RSSItem]) -&gt; Void)?
+    
+    func parseFeed(url: String, completionHandler: (([RSSItem]) -&gt; Void)?) {
+        
+        self.parserCompletionHandler = completionHandler
+        let request = URLRequest(url: URL(string: url)!) 
+        URLSession.shared.dataTask(with: request) { (data, response, err) in
+            guard let data = data else {
+                if let err = err {
+                    print(err.localizedDescription)
+                }
+                return
+            }
+            ///Parse xml data
+            let parser = XMLParser(data: data)
+            parser.delegate = self
+            // Boolen parse()
+            parser.parse()
+        }.resume()
+    }
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        currentElement = elementName
+        
+        // Item moi bat dau tai &lt;item&gt; tag, ta khong quan tam Header
+        if currentElement == "item" {
+            //}|| currentElement == "entry" {
+            // Tai day, ta lam viec vs n + 1 entry
+            currentTitle = ""
+            currentDescription = ""
+            currentPubDate = ""
+            currentImage = ""
+        }
+        else if currentElement == "enclosure" {
+            if let urlString = attributeDict["url"] {
+                currentImage1.append(urlString as AnyObject)
+                guard let _urlString = urlString as? String else {return}
+                currentImage.append(_urlString) // dang nil
+            }
+        }
+    
+    }
+    
+    func parser(_ parser: XMLParser,foundCharacters string: String) {
+        switch currentElement {
+        case "title" : currentTitle += string
+        case "description" :
+//            let removed = "/&gt;"
+//            var a = string.components(separatedBy: "/&gt;")[1]
+            
+            currentDescription += string
+            
+        case "pubDate" : var a = string.components(separatedBy: "+").first
+                        currentPubDate += a!
+        default: break
+//            "/&gt;
+        }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
+    {
+        if elementName == "item" {
+            let rssItem = RSSItem(title: currentTitle, description: currentDescription, pubDate: currentPubDate, imgString: currentImage.description)
+            self.rssItems.append(rssItem)
+        }
+    }
+    
+    func parserDidEndDocument(_ parser: XMLParser) {
+        parserCompletionHandler?(rssItems)
+    }
+    
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error)
+    {
+        print(parseError.localizedDescription)
+    }
+    
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>C9BAEE9A-C556-4006-8A51-52FC73E036A0</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>My Code Snippet</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
