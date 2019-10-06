@@ -3,19 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>IDECodeSnippetCompletionPrefix</key>
-	<string>bag</string>
+	<string>Swift - Parameters</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
 		<string>All</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>let bag = DisposeBag()</string>
+	<string>  /**
+   - Parameters:
+     + &lt;#parameter name#&gt;: &lt;#description#&gt;
+     + &lt;#parameter name#&gt;: &lt;#description#&gt;
+   */
+</string>
 	<key>IDECodeSnippetIdentifier</key>
-	<string>2E823131-FD9B-4E18-892C-2F1393DBB77E</string>
+	<string>CD98BAC8-E5A8-4031-A65B-12E0C31D9C89</string>
 	<key>IDECodeSnippetLanguage</key>
 	<string>Xcode.SourceCodeLanguage.Generic</string>
 	<key>IDECodeSnippetTitle</key>
-	<string>RxSwift - DisposeBag</string>
+	<string>Swift - Parameters</string>
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
